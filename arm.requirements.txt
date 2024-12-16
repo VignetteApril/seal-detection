@@ -1,0 +1,16 @@
+onnx>=1.13.0
+paddlepaddle==2.6.2
+paddleocr
+pytesseract
+fastapi
+python-multipart
+uvicorn
+orjson
+loguru
+opencv-python-headless
+pydantic-settings
+pillow
+easydict
+python-Levenshtein
+PyYAML
+protobuf==3.20.2
