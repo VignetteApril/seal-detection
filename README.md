@@ -1,38 +1,38 @@
-# 印章检测应用
+# Seal Detection Application
 
-这是一个基于 FastAPI 的印章检测应用镜像，用户可以上传图片并检测图片中是否有印章。该应用设计简单，易于使用。
+This is a seal detection application based on FastAPI. Users can upload images and detect whether there is a seal in the image. The application is simple and easy to use.
 
-## 如何拉取并使用镜像
+## How to Pull and Use the Image
 
-### 第一步：拉取镜像
+### Step 1: Pull the Image
 
-您可以使用以下命令从 Docker Hub 拉取该镜像：
+You can pull the image from Docker Hub using the following command:
 
 ```bash
 docker pull zhangjieboot/seal-detect:v1
 ```
 
-### 第二步：运行容器
+### Step 2: Run the Container
 
-拉取镜像后，可以使用以下命令运行容器：
+After pulling the image, you can run the container using the following command:
 
 ```bash
 docker run -d -p 9999:9999 zhangjieboot/seal-detect:v1
 ```
 
-该命令会启动 FastAPI 应用，并将其端口 `9999` 映射到本地机器的 `9999` 端口。应用启动后，您可以通过 `http://localhost:9999` 访问该服务。
+This command will start the FastAPI application and map its `9999` port to the `9999` port on your local machine. Once the application is running, you can access the service via `http://localhost:9999`.
 
-### 第三步：测试 API
+### Step 3: Test the API
 
-FastAPI 应用提供了一个用于检测图片中印章的 API 端点，您可以通过 `curl` 或 Postman 等工具测试该 API。
+The FastAPI application provides an API endpoint for seal detection, which you can test using `curl` or tools like Postman.
 
-#### `/detect-seal/` 端点
+#### `/detect-seal/` Endpoint
 
-- **方法**: `POST`
+- **Method**: `POST`
 - **Content-Type**: `multipart/form-data`
-- **参数**: `file`（上传的图片文件）
+- **Parameter**: `file` (uploaded image file)
 
-#### 使用 `curl` 测试示例：
+#### Example Test with `curl`:
 
 ```bash
 curl -X POST "http://localhost:9999/detect-seal/" \
@@ -40,38 +40,38 @@ curl -X POST "http://localhost:9999/detect-seal/" \
   -F "file=@/path/to/your/image.jpg"
 ```
 
-### API 响应
+### API Response
 
-- 如果检测到印章，返回如下 JSON：
+- If a seal is detected, the API returns the following JSON:
 
   ```json
   {
-      "message": "检测到印章",
+      "message": "Seal detected",
       "has_seal": true
   }
   ```
 
-- 如果未检测到印章，返回如下 JSON：
+- If no seal is detected, the API returns the following JSON:
 
   ```json
   {
-      "message": "未检测到印章",
+      "message": "No seal detected",
       "has_seal": false
   }
   ```
 
-## 开发说明
+## Development Guide
 
-如果您想在本地运行该 FastAPI 应用，而不使用 Docker，您可以按照以下步骤操作：
+If you want to run the FastAPI application locally without using Docker, follow the steps below:
 
-1. 克隆代码库。
-2. 安装所需的 Python 依赖：
+1. Clone the repository.
+2. Install the required Python dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-3. 运行应用：
+3. Run the application:
 
    ```bash
    uvicorn main:app --host 0.0.0.0 --port 9999 --reload
